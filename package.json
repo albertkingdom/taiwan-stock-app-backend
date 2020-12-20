@@ -10,7 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors-anywhere": "^0.4.3"
+    "axios": "^0.21.0",
+    "cors": "^2.8.5",
+    "dateformat": "^4.3.1",
+    "express": "^4.17.1"
   },
   "engines": {
     "node": "12.x"
