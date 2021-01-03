@@ -73,7 +73,7 @@ router.post("/kplot", async (req, res) => {
     const response = Promise.all([getStockInfo(url1), getStockInfo(url2)]);
     const [{ data: data1 }, { data: data2 }] = await response;
 
-    const modifydata = data1.concat(data2).slice();
+    const modifydata = data1 ? data1.concat(data2).slice() : data2.slice();
 
     modifydata.forEach((day) => {
       day[0] = day[0].replace("109", "2020").replace(/\//g, "-");
