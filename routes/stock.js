@@ -32,28 +32,28 @@ router.post("/stockprice", async (req, res) => {
 //熱門成交股
 router.get("/hotstock", async (req, res) => {
   //取得日期"2020/12/13" -->"20201213",遇假日則找最近平日
-  const getDate = () => {
-    //if Saturday or Sunday, get Friday info instead
-    if (new Date().getDay() === 6) {
-      return new Date(Date.now() - 864e5);
-    } else if (new Date().getDay() === 0) {
-      return new Date(Date.now() - 2 * 864e5);
-    }
-    //Monday morning
-    if (new Date().getDay() === 1 && new Date().getHours() < 14) {
-      return new Date(Date.now() - 3 * 864e5);
-    }
-    //if today's info is not published,then get yesterday's info instead
-    if (new Date().getHours() >= 14) {
-      return new Date();
-    } else {
-      return new Date(Date.now() - 864e5);
-    }
-  };
+  // const getDate = () => {
+  //   //if Saturday or Sunday, get Friday info instead
+  //   if (new Date().getDay() === 6) {
+  //     return new Date(Date.now() - 864e5);
+  //   } else if (new Date().getDay() === 0) {
+  //     return new Date(Date.now() - 2 * 864e5);
+  //   }
+  //   //Monday morning
+  //   if (new Date().getDay() === 1 && new Date().getHours() < 14) {
+  //     return new Date(Date.now() - 3 * 864e5);
+  //   }
+  //   //if today's info is not published,then get yesterday's info instead
+  //   if (new Date().getHours() >= 14) {
+  //     return new Date();
+  //   } else {
+  //     return new Date(Date.now() - 864e5);
+  //   }
+  // };
   //格式化日期 e.g. 20201010
-  const dateoutput = dateFormat(getDate(), "yyyymmdd");
+  // const dateoutput = dateFormat(getDate(), "yyyymmdd");
 
-  const url = `https://www.twse.com.tw/exchangeReport/MI_INDEX20?response=json&date=${dateoutput}`;
+  const url = `https://www.twse.com.tw/exchangeReport/MI_INDEX20?response=json`;
   const response = await axios.get(url);
 
   res.json({ hitoStocklist: response.data.data });
