@@ -3,11 +3,11 @@ var router = express.Router();
 const axios = require("axios");
 const dateFormat = require("dateformat");
 //大盤指數
-router.post("/stockIndex", async (req, res) => {
+router.get("/stockIndex", async (req, res) => {
   //   console.log(req.body);
-  const { date } = req.body;
+  // const { date } = req.body;
   const response = await axios.get(
-    `https://www.twse.com.tw/exchangeReport/MI_INDEX?response=json&date=${date}&type=IND`
+    `https://www.twse.com.tw/exchangeReport/MI_INDEX?response=json&type=IND`
   );
   //   console.log("response", response);
   const indexInfo = {
